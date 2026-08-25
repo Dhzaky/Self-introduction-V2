@@ -5,6 +5,8 @@ body, html {
     overflow: hidden;
     background: linear-gradient(180deg, #071931 0%, #0d1e35 100%);
     font-family: Arial, sans-serif;
+    overscroll-behavior: none;
+    touch-action: manipulation;
 }
 
 body {
@@ -267,6 +269,8 @@ body.page-leaving {
     position: relative;
     overflow: hidden;
     background: #071931;
+    height: 100vh;
+    max-height: 100vh;
 }
 
 .social-page .video-background {
@@ -284,6 +288,7 @@ body.page-leaving {
 .social-shell {
     position: relative;
     z-index: 2;
+    height: 100vh;
     min-height: 100vh;
     display: flex;
     align-items: center;
