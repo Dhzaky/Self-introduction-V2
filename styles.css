@@ -58,6 +58,22 @@ body, html {
     white-space: nowrap;
     text-shadow: 3px 3px 0 rgba(0, 0, 50, 0.35);
     transition: transform 0.15s ease, color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    animation: menu-pop-in 0.6s cubic-bezier(0.22, 1.2, 0.36, 1) both;
+}
+
+.menu-item:nth-child(2) { animation-delay: 0.1s; }
+.menu-item:nth-child(3) { animation-delay: 0.2s; }
+.menu-item:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes menu-pop-in {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .menu-item::after {
