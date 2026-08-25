@@ -7,6 +7,40 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+body {
+    animation: page-fade-in 0.55s ease both;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+body.page-leaving {
+    animation: page-fade-out 0.45s ease both;
+    pointer-events: none;
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+::selection {
+    background: transparent;
+}
+
+@keyframes page-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes page-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
 .video-background {
     position: absolute;
     inset: 0;
@@ -15,10 +49,111 @@ body, html {
     object-fit: cover;
     display: block;
     z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
 }
 
 #video2 {
     display: none;
+}
+
+.about-page {
+    overflow: auto;
+    background: #102b4e;
+}
+
+.about-page::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(8, 25, 48, 0.78), rgba(8, 25, 48, 0.2) 70%, rgba(8, 25, 48, 0.05));
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+    width: min(680px, calc(100% - 48px));
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 15vh 0 12vh 6vw;
+    color: #f4fbff;
+    text-shadow: 2px 2px 0 rgba(5, 26, 52, 0.35);
+    animation: about-content-in 0.9s ease-out both;
+}
+
+.mini-back-btn {
+    display: inline-block;
+    margin: 0 0 18px;
+    padding: 6px 10px;
+    border: 1px solid rgba(124, 236, 255, 0.85);
+    background: rgba(15, 35, 60, 0.45);
+    color: #9cecff;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mini-back-btn:hover {
+    background: rgba(70, 180, 255, 0.35);
+    transform: translateX(-2px);
+}
+
+.about-kicker {
+    margin: 0 0 18px;
+    color: #7cecff;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    animation: about-content-in 0.7s ease-out both;
+}
+
+.about-content h1 {
+    max-width: 620px;
+    margin: 0 0 28px;
+    color: #ffffff;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: clamp(2rem, 4.5vw, 4.4rem);
+    font-style: italic;
+    line-height: 0.98;
+    animation: about-title-in 0.8s 0.12s cubic-bezier(0.22, 1.2, 0.36, 1) both;
+}
+
+.about-copy {
+    max-width: 590px;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.65;
+}
+
+.about-copy p {
+    margin: 0 0 16px;
+    animation: about-copy-in 0.7s ease-out both;
+}
+
+.about-copy p:nth-child(2) { animation-delay: 0.18s; }
+.about-copy p:nth-child(3) { animation-delay: 0.3s; }
+.about-copy p:nth-child(4) { animation-delay: 0.42s; }
+
+@keyframes about-content-in {
+    from { opacity: 0; transform: translateX(-28px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes about-title-in {
+    from { opacity: 0; transform: translateY(24px) skewY(-3deg); }
+    to { opacity: 1; transform: translateY(0) skewY(-3deg); }
+}
+
+@keyframes about-copy-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .mobile-image {
@@ -128,7 +263,117 @@ body, html {
 .menu-item:nth-child(4) { margin-left: 0.8em; }
 .menu-item:nth-child(5) { margin-left: 1.5em; }
 
+.social-page {
+    position: relative;
+    overflow: hidden;
+    background: #071931;
+}
+
+.social-page .video-background {
+    filter: saturate(1.1) contrast(1.08);
+}
+
+.social-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(120deg, rgba(5, 18, 36, 0.9), rgba(16, 41, 76, 0.7) 45%, rgba(8, 19, 36, 0.92));
+}
+
+.social-shell {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 24px 48px clamp(28px, 7vw, 90px);
+    box-sizing: border-box;
+}
+
+.social-card {
+    width: min(360px, 100%);
+    padding: clamp(24px, 4vw, 42px);
+    border: 2px solid rgba(104, 219, 255, 0.75);
+    background: rgba(13, 31, 56, 0.45);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+.social-kicker {
+    margin: 0 0 12px;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+    color: #7cecff;
+    text-transform: uppercase;
+}
+
+.social-card h1 {
+    margin: 0 0 20px;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: #edfaff;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.social-link {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 18px;
+    border: 2px solid rgba(126, 233, 255, 0.9);
+    background: rgba(18, 71, 127, 0.72);
+    color: #eafcff;
+    text-decoration: none;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    background: rgba(64, 194, 255, 0.95);
+    color: #041a31;
+    box-shadow: 0 10px 24px rgba(94, 210, 255, 0.35);
+}
+
+.social-back {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #9cecff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
 @media (max-width: 768px) {
+    .about-content {
+        width: calc(100% - 32px);
+        padding: 12vh 16px 10vh;
+    }
+
+    .about-content h1 {
+        font-size: clamp(2rem, 10vw, 3.2rem);
+    }
+
+    .about-copy {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
     .mobile-image {
         top: 12px;
         left: 12px;
@@ -157,6 +402,10 @@ body, html {
 
     .video-background {
         object-position: 7% center;
+    }
+
+    .about-page .video-background {
+        object-position: 100% center;
     }
 
     .menu-item:nth-child(1) { margin-left: 0; }
