@@ -22,7 +22,27 @@ body, html {
 }
 
 .mobile-image {
-    display: none;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 3;
+    display: block;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    animation: image-pop-in 0.7s cubic-bezier(0.22, 1.2, 0.36, 1) both;
+}
+
+@keyframes image-pop-in {
+    from {
+        opacity: 0;
+        transform: translateY(-18px) scale(0.4);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .menu-container {
@@ -110,15 +130,10 @@ body, html {
 
 @media (max-width: 768px) {
     .mobile-image {
-        position: absolute;
         top: 12px;
         left: 12px;
-        z-index: 3;
-        display: block;
-        width: 75px;
-        height: 75px;
-        object-fit: cover;
-        border-radius: 50%;
+        width: 56px;
+        height: 56px;
     }
 
     .menu-container {
